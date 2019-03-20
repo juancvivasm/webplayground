@@ -21,4 +21,6 @@ urlpatterns = [
     path('', include('core.urls')),
     path('pages/', include(pages_patterns)),
     path('admin/', admin.site.urls),
+    # Paths de Auth (Django nos provee las URL para la autenticacion)
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
