@@ -3,6 +3,8 @@
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.utils.decorators import method_decorator
+from django.contrib.admin.views.decorators import staff_member_required
 # from django.urls import reverse
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
@@ -14,10 +16,11 @@ class StaffRequiredMixin(object):
     Es un mixin que exige que el usuario sea miembro del staff
     '''
     # Para controlar quien ingresa a esta vista
+    @method_decorator(staff_member_required)
     def dispatch(self, request, *args, **kwargs):
         # print(request.user)
-        if not request.user.is_staff:
-            return redirect(reverse_lazy('admin:login'))
+        #if not request.user.is_staff:
+        #    return redirect(reverse_lazy('admin:login'))
 
         return super(StaffRequiredMixin, self).dispatch(request, *args, **kwargs)
 
@@ -49,12 +52,12 @@ class PageCreate(StaffRequiredMixin, CreateView):
     #    return reverse('pages:pages')
 
     # Para controlar quien ingresa a esta vista
-    def dispatch(self, request, *args, **kwargs):
-        # print(request.user)
-        if not request.user.is_staff:
-            return redirect(reverse_lazy('admin:login'))
+    #def dispatch(self, request, *args, **kwargs):
+    #    # print(request.user)
+    #    if not request.user.is_staff:
+    #        return redirect(reverse_lazy('admin:login'))
 
-        return super(PageCreate, self).dispatch(request, *args, **kwargs)
+    #    return super(PageCreate, self).dispatch(request, *args, **kwargs)
 
 class PageUpdate(StaffRequiredMixin, UpdateView):
     model = Page
