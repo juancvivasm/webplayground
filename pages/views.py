@@ -5,8 +5,21 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # from django.urls import reverse
 from django.urls import reverse_lazy
+from django.shortcuts import redirect
 from .models import Page
 from .forms import PageForm
+
+class StaffRequiredMixin(object):
+    '''
+    Es un mixin que exige que el usuario sea miembro del staff
+    '''
+    # Para controlar quien ingresa a esta vista
+    def dispatch(self, request, *args, **kwargs):
+        # print(request.user)
+        if not request.user.is_staff:
+            return redirect(reverse_lazy('admin:login'))
+
+        return super(StaffRequiredMixin, self).dispatch(request, *args, **kwargs)
 
 # Create your views here.
 class PageListView(ListView):
@@ -26,17 +39,24 @@ class PageDetailView(DetailView):
     #    context['now'] = timezone.now()
     #    return context
 
-class PageCreate(CreateView):
+class PageCreate(StaffRequiredMixin, CreateView):
     model = Page
     form_class = PageForm
     # fields = ['title', 'content', 'order']
 
     success_url = reverse_lazy('pages:pages')
-
     #def get_success_url(self):
     #    return reverse('pages:pages')
 
-class PageUpdate(UpdateView):
+    # Para controlar quien ingresa a esta vista
+    def dispatch(self, request, *args, **kwargs):
+        # print(request.user)
+        if not request.user.is_staff:
+            return redirect(reverse_lazy('admin:login'))
+
+        return super(PageCreate, self).dispatch(request, *args, **kwargs)
+
+class PageUpdate(StaffRequiredMixin, UpdateView):
     model = Page
     # fields = ['title', 'content', 'order']
     form_class = PageForm
@@ -45,6 +65,6 @@ class PageUpdate(UpdateView):
     def get_success_url(self):
         return reverse_lazy('pages:update', args=[self.object.id]) + '?ok'
 
-class PageDelete(DeleteView):
+class PageDelete(StaffRequiredMixin, DeleteView):
     model = Page
     success_url = reverse_lazy('pages:pages')
