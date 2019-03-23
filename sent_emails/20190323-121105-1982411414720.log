@@ -1,0 +1,25 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?Contrase=C3=B1a_restablecida_en_localhost=3A8000?=
+From: webmaster@localhost
+To: inmaculada@gmail.com
+Date: Sat, 23 Mar 2019 16:11:05 -0000
+Message-ID: <155335746565.4180.6229714466461409361@JC-HP>
+
+
+Ha recibido este correo electrónico porque ha solicitado restablecer la contraseña para su cuenta en localhost:8000.
+
+Por favor, vaya a la página siguiente y escoja una nueva contraseña.
+
+http://localhost:8000/accounts/reset/NA/54v-baea2e6a807d952600ca/
+
+Su nombre de usuario, en caso de haberlo olvidado: inmaculada
+
+¡Gracias por usar nuestro sitio!
+
+El equipo de localhost:8000
+
+
+
+-------------------------------------------------------------------------------
