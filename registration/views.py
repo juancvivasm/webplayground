@@ -1,5 +1,5 @@
 # from django.contrib.auth.forms import UserCreationForm
-from .forms import UserCreationFormWithEmail, ProfileForm
+from .forms import UserCreationFormWithEmail, ProfileForm, EmailForm
 from django.views.generic import CreateView
 from django.views.generic.edit import UpdateView
 # Para validar acceso
@@ -47,3 +47,20 @@ class ProfileUpdate(UpdateView):
         # print(connection.queries)
         return profile
 
+@method_decorator(login_required, name='dispatch')
+class EmailUpdate(UpdateView):
+    form_class = EmailForm
+    success_url = reverse_lazy('profile')
+    template_name = 'registration/profile_email_form.html'
+
+    def get_object(self):
+        # Obtener el objeto que se va a Editar
+        return self.request.user
+
+    # Modificacion en tiempo de ejecucin
+    def get_form(self, form_class=None):
+        form = super(EmailUpdate, self).get_form()
+        # Modificar en tiempo de ejecucion 
+        form.fields['email'].label = ''
+        form.fields['email'].widget = forms.EmailInput(attrs={'class':'form-control mb-2', 'placeholder':'Email'})
+        return form
