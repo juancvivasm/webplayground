@@ -10,6 +10,7 @@ from django.views.generic.detail import DetailView
 #    return render(request, 'profiles/profile_list.html', {'profiles':profiles})
 class ProfileListView(ListView):
     model = Profile
+    paginate_by = 3
     template_name = 'profiles/profile_list.html'
 
 # def profile(request, username):
