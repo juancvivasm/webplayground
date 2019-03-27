@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.views.generic.detail import DetailView
 from .models import Thread
-from django.http import Http404
+from django.http import Http404, JsonResponse
 
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -23,3 +23,7 @@ class ThreadDetail(DetailView):
             raise Http404()
         return obj
 
+def add_message(request, pk):
+    print(request.GET)
+    json_response = {'created':False}
+    return JsonResponse(json_response)
