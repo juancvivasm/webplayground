@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from pages.urls import pages_patterns
 from profiles.urls import profiles_patterns
+from messenger.urls import messenger_patterns
 # Para cargar archivos MEDIA
 from django.conf import settings
 
@@ -25,6 +26,8 @@ urlpatterns = [
     path('pages/', include(pages_patterns)),
     # Paths de Profiles
     path('profiles/', include(profiles_patterns)),
+    # Paths de Messenger
+    path('messenger/', include(messenger_patterns)),
     path('admin/', admin.site.urls),
     # Paths de Auth (Django nos provee las URL para la autenticacion)
     path('accounts/', include('django.contrib.auth.urls')),
