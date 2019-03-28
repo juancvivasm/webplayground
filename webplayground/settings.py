@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import django_heroku 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -82,10 +83,10 @@ WSGI_APPLICATION = 'webplayground.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'webplayground',
-        'USER': 'postgres',
-        'PASSWORD': 'jc159',
-        'HOST': '127.0.0.1',
+        'NAME': 'dfono4j52rjg2p',
+        'USER': 'kdkwhrjffvfbtb',
+        'PASSWORD': '236a874463bc54ee1045346914da61b1ca39fe2b7c48fec3452f7d0672eb1c41',
+        'HOST': 'ec2-50-17-231-192.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
@@ -144,3 +145,5 @@ else:
 # Media Files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+django_heroku.settings(locals())
