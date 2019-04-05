@@ -84,10 +84,10 @@ WSGI_APPLICATION = 'webplayground.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dfono4j52rjg2p',
-        'USER': 'kdkwhrjffvfbtb',
-        'PASSWORD': '236a874463bc54ee1045346914da61b1ca39fe2b7c48fec3452f7d0672eb1c41',
-        'HOST': 'ec2-50-17-231-192.compute-1.amazonaws.com',
+        'NAME': 'd5pa62hujafpsl',
+        'USER': 'ppznsalvigtteq',
+        'PASSWORD': 'ac690ab55157ef4b86304a28ded4d9062947e90e1f447fd80746892d34411307',
+        'HOST': 'ec2-54-225-242-183.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
